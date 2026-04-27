@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Local environments and caches
+.conda/
+.cache/
+.codex
+
+# Generated outputs
+outputs/
+safety_outputs/
+
+# OS / editor
+.DS_Store
+.vscode/
+
