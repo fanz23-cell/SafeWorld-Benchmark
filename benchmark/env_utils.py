@@ -5,11 +5,12 @@ from __future__ import annotations
 from typing import Any
 
 import numpy as np
-import safety_gymnasium as gym
 
 
 def make_env(env_id: str, render_mode: str = "rgb_array"):
     """Create one Safety Gymnasium environment."""
+    import safety_gymnasium as gym
+
     return gym.make(env_id, render_mode=render_mode)
 
 
@@ -31,6 +32,27 @@ def get_agent_position(env) -> np.ndarray:
 def get_agent_velocity(env) -> np.ndarray:
     """Return native agent velocity."""
     return get_agent(env).vel.copy()
+
+
+def get_agent_heading(env) -> float | None:
+    """Return the native agent heading angle when available."""
+    task = get_task(env)
+    if hasattr(task, "data"):
+        xmat = np.asarray(task.data.body("agent").xmat, dtype=float).reshape(3, 3)
+        return float(np.arctan2(xmat[1, 0], xmat[0, 0]))
+    return None
+
+
+def get_agent_angular_velocity(env) -> float | None:
+    """Return the native agent angular velocity when available."""
+    task = get_task(env)
+    if hasattr(task, "data"):
+        try:
+            gyro = np.asarray(task.data.sensor("gyro").data, dtype=float)
+            return float(gyro[2])
+        except Exception:
+            return None
+    return None
 
 
 def get_goal_position(env) -> np.ndarray | None:
@@ -125,6 +147,8 @@ def get_native_debug_state(env) -> dict[str, Any]:
     debug_state: dict[str, Any] = {
         "agent_pos": get_agent_position(env).tolist(),
         "agent_vel": get_agent_velocity(env).tolist(),
+        "agent_heading": get_agent_heading(env),
+        "agent_angular_velocity": get_agent_angular_velocity(env),
         "goal_pos": get_goal_position(env).tolist() if get_goal_position(env) is not None else None,
         "goal_size": get_goal_size(env),
         "hazard_size": get_hazard_size(env),

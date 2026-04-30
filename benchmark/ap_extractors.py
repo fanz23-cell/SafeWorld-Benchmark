@@ -54,7 +54,11 @@ def extract_ap_values(
     min_hazard_distance = min(hazard_distances) if hazard_distances else None
     hazard = any(distance <= hazard_size for distance in hazard_distances)
 
-    goal = bool(task.goal_achieved) if hasattr(task, "goal_achieved") else False
+    # Safety Gymnasium goal tasks can resample the goal immediately after a successful step.
+    # `info["goal_met"]` preserves that one-step event even when `task.goal_achieved` is already false.
+    goal = bool(info.get("goal_met", False)) or (
+        bool(task.goal_achieved) if hasattr(task, "goal_achieved") else False
+    )
     goal_pos = env_utils.get_goal_position(env)
     goal_distance = distance_xy(agent_pos, goal_pos) if goal_pos is not None else None
 
@@ -80,6 +84,7 @@ def extract_ap_values(
         "fast": fast,
         "near_obs": near_obs,
         "near_human": None,
+        "carrying": None,
         "speed": speed,
         "fast_threshold": fast_threshold,
         "goal_distance": goal_distance,
@@ -101,6 +106,12 @@ def extract_ap_values(
         values["near_human"] = None
         state_cache["warnings"].append(
             "near_human is placeholder-only and not paper-faithfully grounded yet.",
+        )
+
+    if "carrying" in task_config.required_aps:
+        values["carrying"] = None
+        state_cache["warnings"].append(
+            "carrying is placeholder-only and not paper-faithfully grounded yet.",
         )
 
     return values
