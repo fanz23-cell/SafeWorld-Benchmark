@@ -66,17 +66,20 @@ def generate_goal2_master_dataset(
     seed: int = 0,
     render: bool = False,
     allow_partial: bool = False,
+    task_ids: list[str] | None = None,
 ) -> dict[str, Any]:
     """Generate the Goal2 master dataset for DreamerV3 data prep."""
     output_root = ensure_dir(Path(output_root))
     episodes_dir = ensure_dir(output_root / "episodes")
     plan_counts = _resolve_plan_counts(plan)
 
+    active_task_ids = task_ids if task_ids is not None else GOAL2_TASK_IDS
+
     master_manifest: list[dict[str, Any]] = []
     task_results: dict[str, dict[str, Any]] = {}
     seed_cursor = seed
 
-    for task_id in GOAL2_TASK_IDS:
+    for task_id in active_task_ids:
         task_config = get_task_config(task_id)
         task_plan = plan_counts[task_id]
         task_records: list[dict[str, Any]] = []

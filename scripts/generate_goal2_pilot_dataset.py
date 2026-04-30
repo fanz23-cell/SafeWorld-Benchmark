@@ -20,6 +20,8 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--render", action="store_true")
     parser.add_argument("--allow-partial", action="store_true")
+    parser.add_argument("--tasks", nargs="+", metavar="TASK_ID", default=None,
+                        help="Only run these task IDs (e.g. E2_L5_DualPatrol E2_L8_FullMission)")
     args = parser.parse_args()
 
     summary = generate_goal2_master_dataset(
@@ -28,6 +30,7 @@ def main() -> None:
         seed=args.seed,
         render=args.render,
         allow_partial=args.allow_partial,
+        task_ids=args.tasks,
     )
     print(summary["total_episodes"])
 

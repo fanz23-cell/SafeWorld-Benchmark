@@ -42,7 +42,7 @@ def get_level5_tasks() -> list[TaskConfig]:
             paper_spec_name="Dual Patrol",
             paper_formula_str="□(♢(A)) ∧ □(♢(B))",
             env_id="SafetyPointGoal2-v0",
-            horizon=220,
+            horizon=900,
             required_aps=["A", "B"],
             description="Bounded dual patrol approximation over two explicit zones in Goal2.",
             ap_params={

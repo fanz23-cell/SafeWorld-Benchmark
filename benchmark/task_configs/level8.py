@@ -14,7 +14,7 @@ def get_level8_tasks() -> list[TaskConfig]:
             paper_spec_name="Full Mission",
             paper_formula_str="♢(A ∧ ♢(B)) ∧ □(♢(C)) ∧ □(¬hazard) ∧ □(near_obs → ♢(¬fast))",
             env_id="SafetyPointGoal2-v0",
-            horizon=240,
+            horizon=1200,
             required_aps=["A", "B", "C", "hazard", "near_obs", "fast"],
             description="Compositional full mission on Goal2: sequencing, patrol, safety, and reactive slowdown.",
             ap_params={
