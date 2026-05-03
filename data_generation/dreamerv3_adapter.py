@@ -41,7 +41,14 @@ def export_goal2_for_dreamerv3(
     )
 
     for worker, record in enumerate(manifest):
-        episode = json.loads(Path(record["episode_path"]).read_text(encoding="utf-8"))
+        # episode_path may be an absolute path from a different machine; resolve
+        # it relative to source_root/episodes using the last 3 path components
+        # (task_dir/bucket/filename) so the dataset is portable.
+        raw_path = Path(record["episode_path"])
+        ep_path = source_root / "episodes" / Path(*raw_path.parts[-3:])
+        if not ep_path.exists():
+            ep_path = raw_path  # fall back to absolute if it somehow exists
+        episode = json.loads(ep_path.read_text(encoding="utf-8"))
         for step in _episode_to_dreamer_steps(episode):
             replay.add(step, worker=worker)
             total_steps += 1
