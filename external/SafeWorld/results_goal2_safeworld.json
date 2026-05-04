@@ -1,0 +1,337 @@
+[
+  {
+    "level": 1,
+    "spec_id": "stl_hazard_avoidance",
+    "status": "SUPPORTED",
+    "reasons": [],
+    "verdict": "WARRANT",
+    "rho_star": 0.2614,
+    "rho_net": 0.1814,
+    "guarantee": "strict",
+    "confidence": 0.95,
+    "runtime_s": 4.5,
+    "error": null
+  },
+  {
+    "level": 1,
+    "spec_id": "ltl_hazard_avoidance",
+    "status": "SUPPORTED",
+    "reasons": [],
+    "verdict": "STL_MARGIN",
+    "rho_star": 0.0823,
+    "rho_net": 0.0023,
+    "guarantee": "strict",
+    "confidence": 0.95,
+    "runtime_s": 4.4,
+    "error": null
+  },
+  {
+    "level": 1,
+    "spec_id": "stl_speed_limit",
+    "status": "SUPPORTED",
+    "reasons": [],
+    "verdict": "WARRANT",
+    "rho_star": 0.6057,
+    "rho_net": 0.5257,
+    "guarantee": "strict",
+    "confidence": 0.95,
+    "runtime_s": 4.2,
+    "error": null
+  },
+  {
+    "level": 1,
+    "spec_id": "ltl_speed_limit",
+    "status": "SUPPORTED",
+    "reasons": [],
+    "verdict": "STL_MARGIN",
+    "rho_star": 0.6057,
+    "rho_net": 0.5257,
+    "guarantee": "strict",
+    "confidence": 0.95,
+    "runtime_s": 4.3,
+    "error": null
+  },
+  {
+    "level": 2,
+    "spec_id": "stl_safe_goal_reach",
+    "status": "SUPPORTED",
+    "reasons": [],
+    "verdict": "VIOLATION",
+    "rho_star": -0.641,
+    "rho_net": -0.721,
+    "guarantee": "none",
+    "confidence": 0.0,
+    "runtime_s": 4.2,
+    "error": null
+  },
+  {
+    "level": 2,
+    "spec_id": "ltl_safe_goal",
+    "status": "SUPPORTED",
+    "reasons": [],
+    "verdict": "VIOLATION",
+    "rho_star": -0.2831,
+    "rho_net": -0.3631,
+    "guarantee": "none",
+    "confidence": 0.0,
+    "runtime_s": 4.2,
+    "error": null
+  },
+  {
+    "level": 2,
+    "spec_id": "ltl_safe_slow_goal",
+    "status": "SUPPORTED",
+    "reasons": [],
+    "verdict": "VIOLATION",
+    "rho_star": -0.2831,
+    "rho_net": -0.3631,
+    "guarantee": "none",
+    "confidence": 0.0,
+    "runtime_s": 4.2,
+    "error": null
+  },
+  {
+    "level": 3,
+    "spec_id": "stl_sequential_zones",
+    "status": "N/A",
+    "reasons": [
+      "requires zone_a (always 0.0 in this model)",
+      "requires zone_b (always 0.0 in this model)"
+    ],
+    "verdict": "N/A",
+    "rho_star": null,
+    "rho_net": null,
+    "guarantee": null,
+    "confidence": null,
+    "runtime_s": null,
+    "error": null
+  },
+  {
+    "level": 3,
+    "spec_id": "ltl_sequential_goals",
+    "status": "N/A",
+    "reasons": [
+      "requires zone_a (always 0.0 in this model)",
+      "requires zone_b (always 0.0 in this model)"
+    ],
+    "verdict": "N/A",
+    "rho_star": null,
+    "rho_net": null,
+    "guarantee": null,
+    "confidence": null,
+    "runtime_s": null,
+    "error": null
+  },
+  {
+    "level": 3,
+    "spec_id": "ltl_three_stage",
+    "status": "N/A",
+    "reasons": [
+      "requires zone_a (always 0.0 in this model)",
+      "requires zone_b (always 0.0 in this model)",
+      "requires zone_c (always 0.0 in this model)"
+    ],
+    "verdict": "N/A",
+    "rho_star": null,
+    "rho_net": null,
+    "guarantee": null,
+    "confidence": null,
+    "runtime_s": null,
+    "error": null
+  },
+  {
+    "level": 4,
+    "spec_id": "stl_obstacle_response",
+    "status": "SUPPORTED",
+    "reasons": [],
+    "verdict": "VIOLATION",
+    "rho_star": -1.4805,
+    "rho_net": -1.5605,
+    "guarantee": "none",
+    "confidence": 0.0,
+    "runtime_s": 4.1,
+    "error": null
+  },
+  {
+    "level": 4,
+    "spec_id": "ltl_hazard_response",
+    "status": "SUPPORTED",
+    "reasons": [],
+    "verdict": "STL_MARGIN",
+    "rho_star": 0.1254,
+    "rho_net": 0.0454,
+    "guarantee": "strict",
+    "confidence": 0.95,
+    "runtime_s": 4.2,
+    "error": null
+  },
+  {
+    "level": 5,
+    "spec_id": "stl_bounded_patrol",
+    "status": "N/A",
+    "reasons": [
+      "requires zone_a (always 0.0 in this model)"
+    ],
+    "verdict": "N/A",
+    "rho_star": null,
+    "rho_net": null,
+    "guarantee": null,
+    "confidence": null,
+    "runtime_s": null,
+    "error": null
+  },
+  {
+    "level": 5,
+    "spec_id": "ltl_patrol",
+    "status": "N/A",
+    "reasons": [
+      "requires zone_a (always 0.0 in this model)"
+    ],
+    "verdict": "N/A",
+    "rho_star": null,
+    "rho_net": null,
+    "guarantee": null,
+    "confidence": null,
+    "runtime_s": null,
+    "error": null
+  },
+  {
+    "level": 5,
+    "spec_id": "stl_safe_dual_patrol",
+    "status": "N/A",
+    "reasons": [
+      "requires zone_a (always 0.0 in this model)",
+      "requires zone_b (always 0.0 in this model)"
+    ],
+    "verdict": "N/A",
+    "rho_star": null,
+    "rho_net": null,
+    "guarantee": null,
+    "confidence": null,
+    "runtime_s": null,
+    "error": null
+  },
+  {
+    "level": 5,
+    "spec_id": "ltl_dual_patrol",
+    "status": "N/A",
+    "reasons": [
+      "requires zone_a (always 0.0 in this model)",
+      "requires zone_b (always 0.0 in this model)"
+    ],
+    "verdict": "N/A",
+    "rho_star": null,
+    "rho_net": null,
+    "guarantee": null,
+    "confidence": null,
+    "runtime_s": null,
+    "error": null
+  },
+  {
+    "level": 6,
+    "spec_id": "ltl_safe_reactive_goal",
+    "status": "SUPPORTED",
+    "reasons": [],
+    "verdict": "VIOLATION",
+    "rho_star": -0.5585,
+    "rho_net": -0.6385,
+    "guarantee": "none",
+    "confidence": 0.0,
+    "runtime_s": 4.4,
+    "error": null
+  },
+  {
+    "level": 6,
+    "spec_id": "ltl_safe_patrol",
+    "status": "N/A",
+    "reasons": [
+      "requires zone_a (always 0.0 in this model)"
+    ],
+    "verdict": "N/A",
+    "rho_star": null,
+    "rho_net": null,
+    "guarantee": null,
+    "confidence": null,
+    "runtime_s": null,
+    "error": null
+  },
+  {
+    "level": 7,
+    "spec_id": "ltl_human_caution",
+    "status": "PARTIAL",
+    "reasons": [
+      "uses near_human (no ground-truth threshold; human_distance head is a training placeholder)"
+    ],
+    "verdict": "STL_MARGIN",
+    "rho_star": 0.0561,
+    "rho_net": -0.0239,
+    "guarantee": "conformal",
+    "confidence": 0.9,
+    "runtime_s": 11.4,
+    "error": null
+  },
+  {
+    "level": 7,
+    "spec_id": "ltl_conditional_speed",
+    "status": "N/A",
+    "reasons": [
+      "requires carrying (always 0.0 in this model)"
+    ],
+    "verdict": "N/A",
+    "rho_star": null,
+    "rho_net": null,
+    "guarantee": null,
+    "confidence": null,
+    "runtime_s": null,
+    "error": null
+  },
+  {
+    "level": 7,
+    "spec_id": "ltl_conditional_proximity",
+    "status": "PARTIAL",
+    "reasons": [
+      "uses near_human (no ground-truth threshold; human_distance head is a training placeholder)"
+    ],
+    "verdict": "STL_MARGIN",
+    "rho_star": 0.2211,
+    "rho_net": 0.1411,
+    "guarantee": "strict",
+    "confidence": 0.95,
+    "runtime_s": 11.5,
+    "error": null
+  },
+  {
+    "level": 8,
+    "spec_id": "ltl_full_mission",
+    "status": "N/A",
+    "reasons": [
+      "requires zone_a (always 0.0 in this model)",
+      "requires zone_b (always 0.0 in this model)",
+      "requires zone_c (always 0.0 in this model)"
+    ],
+    "verdict": "N/A",
+    "rho_star": null,
+    "rho_net": null,
+    "guarantee": null,
+    "confidence": null,
+    "runtime_s": null,
+    "error": null
+  },
+  {
+    "level": 8,
+    "spec_id": "stl_full_mission",
+    "status": "N/A",
+    "reasons": [
+      "requires zone_a (always 0.0 in this model)",
+      "requires zone_b (always 0.0 in this model)",
+      "requires zone_c (always 0.0 in this model)"
+    ],
+    "verdict": "N/A",
+    "rho_star": null,
+    "rho_net": null,
+    "guarantee": null,
+    "confidence": null,
+    "runtime_s": null,
+    "error": null
+  }
+]

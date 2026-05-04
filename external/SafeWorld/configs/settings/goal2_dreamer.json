@@ -1,0 +1,39 @@
+{
+  "description": "Runtime settings for the Goal2 DreamerV3-style world model (aux-decoder RSSM).",
+
+  "model": {
+    "type":            "goal2_dreamer",
+    "checkpoint_path": "/home/fanz23@netid.washington.edu/Desktop/SafeWorld-Benchmark/logs/goal2_world_model_v2/ckpt_0500000.pt",
+    "model_dir":       "/home/fanz23@netid.washington.edu/Desktop/SafeWorld-Benchmark/training/dreamer_world_model",
+    "device":          "cpu",
+    "comment":         "500 000-step checkpoint from FanZhangg/dreamv3-learned2 on HuggingFace"
+  },
+
+  "environment": {
+    "name":    "SafetyPointGoal2Gymnasium-v0",
+    "config":  "configs/environments/goal2.json",
+    "wrapper": "Goal2WorldModelWrapper",
+    "kwargs":  {},
+    "reset_kwargs": {}
+  },
+
+  "rollout": {
+    "horizon":        50,
+    "n_rollouts":     30,
+    "action_source":  "oracle",
+    "seed":           42,
+    "device":         "cpu"
+  },
+
+  "verification": {
+    "auto_collect_paired_rollouts": false,
+    "model_error_budget":           0.08
+  },
+
+  "extra": {
+    "ap_mode":            "aux_decoder",
+    "closed_loop_replay": false,
+    "oracle_episodes_dir": "/home/fanz23@netid.washington.edu/Desktop/SafeWorld-Benchmark/datasets/goal2_master/safeworld-goal2-master/episodes",
+    "comment":            "action_source=oracle: replay success-bucket episode actions through RSSM prior for meaningful STL verification"
+  }
+}
