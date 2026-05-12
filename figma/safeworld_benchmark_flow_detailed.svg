@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="2380" viewBox="0 0 1920 2380" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="-8%" y="-8%" width="116%" height="130%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#24324A" flood-opacity="0.13"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#526173"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#2563EB"/>
+    </marker>
+    <style>
+      .bg { fill: #F6F8FC; }
+      .h1 { font: 800 52px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; fill: #111827; }
+      .h2 { font: 700 30px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; fill: #111827; }
+      .h3 { font: 700 22px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; fill: #172033; }
+      .body { font: 400 18px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; fill: #465160; }
+      .body2 { font: 400 16px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; fill: #536071; }
+      .small { font: 400 14px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; fill: #64748B; }
+      .tiny { font: 600 12px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; letter-spacing: .8px; fill: #64748B; }
+      .tag { font: 700 14px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; letter-spacing: .7px; fill: #FFFFFF; }
+      .mono { font: 600 17px "Roboto Mono", "Consolas", monospace; fill: #314158; }
+      .formula { font: 700 22px "Roboto Mono", "Consolas", monospace; fill: #1E293B; }
+      .white { fill: #FFFFFF; }
+      .stroke { stroke: #D7E0EF; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1920" height="2380"/>
+
+  <!-- Header -->
+  <rect x="88" y="56" width="1744" height="184" rx="20" fill="#FFFFFF" filter="url(#shadow)"/>
+  <rect x="88" y="56" width="12" height="184" rx="6" fill="#2563EB"/>
+  <text class="h1" x="136" y="128">SAFEWORLD-Benchmark 详细项目流程图</text>
+  <text class="body" x="138" y="176">从 L1-L8 安全任务定义，到数据采集、DreamerV3-style world model 训练，再到 SAFEWORLD 对 imagined rollouts 做形式化验证。</text>
+  <rect x="138" y="196" width="360" height="32" rx="16" fill="#EAF2FF"/>
+  <text class="tiny" x="166" y="217">PORTFOLIO / INTERVIEW EXPLANATION VERSION</text>
+  <rect x="1330" y="116" width="416" height="68" rx="10" fill="#F8FAFF" stroke="#C9D8F1"/>
+  <text class="mono" x="1362" y="157">WARRANT · STL_MARGIN · VIOLATION</text>
+
+  <!-- Storyline -->
+  <rect x="88" y="284" width="1744" height="134" rx="18" fill="#FFFFFF" stroke="#D7E0EF"/>
+  <text class="h3" x="126" y="336">一句话主线</text>
+  <text class="body" x="126" y="376">先给机器人世界模型出一套安全考试题；再用 controller 收集示范轨迹训练 world model；最后让模型想象未来，并用 SAFEWORLD 检查这些未来是否违反规则。</text>
+  <path d="M940 316 C1016 316 1032 386 1108 386" stroke="#2563EB" stroke-width="4" marker-end="url(#arrowBlue)"/>
+
+  <!-- Stage 1 -->
+  <rect x="88" y="470" width="1744" height="560" rx="22" fill="#FFFFFF" filter="url(#shadow)"/>
+  <rect x="88" y="470" width="1744" height="74" rx="22" fill="#EAF2FF"/>
+  <text class="h2" x="126" y="518">阶段 1：任务定义 + 数据采集</text>
+  <text class="body2" x="494" y="518">把安全规则变成可判分的 AP trace，再让 controller 在 Safety Gymnasium 里跑出训练数据。</text>
+
+  <rect x="126" y="590" width="382" height="348" rx="12" fill="#F8FAFF" stroke="#CBD8EE"/>
+  <text class="h3" x="156" y="628">1. L1-L8 benchmark 任务</text>
+  <text class="body2" x="156" y="666">L1：不进入 hazard 危险区</text>
+  <text class="body2" x="156" y="696">L2：安全到达 goal</text>
+  <text class="body2" x="156" y="726">L3：按顺序访问 A → B → C</text>
+  <text class="body2" x="156" y="756">L4：靠近障碍物后必须减速</text>
+  <text class="body2" x="156" y="786">L5：反复巡逻 A / B 区域</text>
+  <text class="body2" x="156" y="816">L6：安全 + 到达 + 响应组合</text>
+  <text class="body2" x="156" y="846">L7：条件安全，占位 / 扩展任务</text>
+  <text class="body2" x="156" y="876">L8：full mission 综合任务</text>
+
+  <rect x="572" y="590" width="300" height="166" rx="12" fill="#FFFFFF" stroke="#D7E0EF"/>
+  <text class="h3" x="600" y="628">2. AP 原子命题</text>
+  <text class="body2" x="600" y="666">每一步的小判断题：</text>
+  <text class="body2" x="600" y="696">hazard / goal / fast</text>
+  <text class="body2" x="600" y="726">near_obs / in_A / in_B / in_C</text>
+
+  <rect x="572" y="794" width="300" height="144" rx="12" fill="#FFFFFF" stroke="#D7E0EF"/>
+  <text class="h3" x="600" y="832">3. Evaluator 判卷</text>
+  <text class="body2" x="600" y="870">输入：一整条 AP trace</text>
+  <text class="body2" x="600" y="900">输出：success / violation / step</text>
+
+  <rect x="936" y="590" width="350" height="348" rx="12" fill="#FFFFFF" stroke="#D7E0EF"/>
+  <text class="h3" x="966" y="628">4. Controller 跑任务</text>
+  <text class="body2" x="966" y="666">环境：SafetyPointGoal2-v0</text>
+  <text class="body2" x="966" y="708">行为目标：</text>
+  <text class="body2" x="966" y="738">到达目标，避开 hazard</text>
+  <text class="body2" x="966" y="768">经过 A / B / C 区域</text>
+  <text class="body2" x="966" y="798">靠近障碍物时减速</text>
+  <text class="body2" x="966" y="828">完成巡逻 / full mission</text>
+  <rect x="966" y="864" width="230" height="40" rx="20" fill="#EAF2FF"/>
+  <text class="mono" x="990" y="890">policy -> env step</text>
+
+  <rect x="1350" y="590" width="414" height="348" rx="12" fill="#F8FAFF" stroke="#CBD8EE"/>
+  <text class="h3" x="1380" y="628">5. 保存 episode 数据</text>
+  <text class="body2" x="1380" y="666">每一步保存：</text>
+  <text class="body2" x="1380" y="696">obs / action / reward / cost</text>
+  <text class="body2" x="1380" y="726">AP labels / speed</text>
+  <text class="body2" x="1380" y="756">goal distance / hazard distance</text>
+  <text class="body2" x="1380" y="804">每条 episode 分三类：</text>
+  <rect x="1380" y="830" width="104" height="34" rx="17" fill="#16A34A"/>
+  <text class="tag" x="1405" y="852">success</text>
+  <rect x="1496" y="830" width="132" height="34" rx="17" fill="#F59E0B"/>
+  <text class="tag" x="1515" y="852">near_success</text>
+  <rect x="1380" y="878" width="214" height="34" rx="17" fill="#64748B"/>
+  <text class="tag" x="1402" y="900">failure_or_recovery</text>
+
+  <path d="M508 764 H560" stroke="#526173" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M872 674 H924" stroke="#526173" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M872 866 H924" stroke="#526173" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M1286 764 H1338" stroke="#526173" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <!-- Stage 2 -->
+  <rect x="88" y="1080" width="1744" height="360" rx="22" fill="#FFFFFF" filter="url(#shadow)"/>
+  <rect x="88" y="1080" width="1744" height="74" rx="22" fill="#ECFDF3"/>
+  <text class="h2" x="126" y="1128">阶段 2：数据处理 + DreamerV3 格式转换</text>
+  <text class="body2" x="688" y="1128">把采集好的轨迹整理成 world model 能直接吃的 replay chunks。</text>
+
+  <rect x="126" y="1200" width="360" height="146" rx="12" fill="#F7FEF9" stroke="#CBEBD7"/>
+  <text class="h3" x="154" y="1238">1. 读取 goal2_master</text>
+  <text class="body2" x="154" y="1278">包含 success / near_success / failure_or_recovery</text>
+  <text class="body2" x="154" y="1308">保留原始轨迹和安全标签</text>
+
+  <rect x="580" y="1200" width="360" height="146" rx="12" fill="#F7FEF9" stroke="#CBEBD7"/>
+  <text class="h3" x="608" y="1238">2. 构造训练集</text>
+  <text class="body2" x="608" y="1278">mixed_70_20_10：70% 成功</text>
+  <text class="body2" x="608" y="1308">20% 接近成功，10% 失败 / 恢复</text>
+
+  <rect x="1034" y="1200" width="360" height="146" rx="12" fill="#F7FEF9" stroke="#CBEBD7"/>
+  <text class="h3" x="1062" y="1238">3. 输出 replay chunks</text>
+  <text class="body2" x="1062" y="1278">DreamerV3-style .npz 文件</text>
+  <text class="body2" x="1062" y="1308">observation / action / reward / cost</text>
+
+  <rect x="1488" y="1200" width="276" height="146" rx="12" fill="#FFFFFF" stroke="#CBEBD7"/>
+  <text class="h3" x="1516" y="1238">对照实验</text>
+  <text class="body2" x="1516" y="1278">success_only</text>
+  <text class="body2" x="1516" y="1308">用于比较数据多样性影响</text>
+
+  <path d="M486 1273 H568" stroke="#4E9B69" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M940 1273 H1022" stroke="#4E9B69" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M1394 1273 H1476" stroke="#4E9B69" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <!-- Stage 3 -->
+  <rect x="88" y="1490" width="1744" height="430" rx="22" fill="#FFFFFF" filter="url(#shadow)"/>
+  <rect x="88" y="1490" width="1744" height="74" rx="22" fill="#FFF6E6"/>
+  <text class="h2" x="126" y="1538">阶段 3：训练 World Model</text>
+  <text class="body2" x="540" y="1538">让模型学习 “现在这样，做这个动作，下一步世界会变成什么”。</text>
+
+  <rect x="126" y="1620" width="250" height="148" rx="12" fill="#FFFBF3" stroke="#F2D7A6"/>
+  <text class="h3" x="154" y="1658">1. 输入训练数据</text>
+  <text class="body2" x="154" y="1698">obs, action</text>
+  <text class="body2" x="154" y="1728">reward, cost</text>
+
+  <rect x="456" y="1620" width="250" height="148" rx="12" fill="#FFFBF3" stroke="#F2D7A6"/>
+  <text class="h3" x="484" y="1658">2. Encoder</text>
+  <text class="body2" x="484" y="1698">压缩 observation</text>
+  <text class="formula" x="484" y="1732">obs_t -> z_t</text>
+
+  <rect x="786" y="1620" width="294" height="148" rx="12" fill="#FFFBF3" stroke="#F2D7A6"/>
+  <text class="h3" x="814" y="1658">3. RSSM / Dynamics</text>
+  <text class="body2" x="814" y="1698">学习 latent 转移</text>
+  <text class="formula" x="814" y="1732">z_t + a_t -> z_{t+1}</text>
+
+  <rect x="1160" y="1620" width="360" height="208" rx="12" fill="#FFFBF3" stroke="#F2D7A6"/>
+  <text class="h3" x="1188" y="1658">4. Prediction Heads</text>
+  <text class="body2" x="1188" y="1698">从 latent 预测：</text>
+  <text class="body2" x="1188" y="1728">next observation / reward / cost</text>
+  <text class="body2" x="1188" y="1758">speed / goal distance / hazard distance</text>
+  <text class="body2" x="1188" y="1788">AP-related labels / safety signals</text>
+
+  <rect x="1590" y="1620" width="174" height="208" rx="12" fill="#FFFFFF" stroke="#F2D7A6"/>
+  <text class="h3" x="1618" y="1658">5. 保存模型</text>
+  <text class="body2" x="1618" y="1698">checkpoint</text>
+  <text class="body2" x="1618" y="1728">用于后续</text>
+  <text class="body2" x="1618" y="1758">imagination</text>
+
+  <path d="M376 1694 H444" stroke="#B9811F" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M706 1694 H774" stroke="#B9811F" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M1080 1694 H1148" stroke="#B9811F" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M1520 1724 H1578" stroke="#B9811F" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <rect x="126" y="1848" width="1394" height="38" rx="19" fill="#FFF6E6"/>
+  <text class="small" x="154" y="1872">训练目标不是直接做最终决策，而是得到一个可以在 latent space 中“想象未来轨迹”的 dynamics model。</text>
+
+  <!-- Stage 4 -->
+  <rect x="88" y="1970" width="1744" height="304" rx="22" fill="#FFFFFF" filter="url(#shadow)"/>
+  <rect x="88" y="1970" width="1744" height="74" rx="22" fill="#F4ECFF"/>
+  <text class="h2" x="126" y="2018">阶段 4：SAFEWORLD Verification + Matrix 输出</text>
+  <text class="body2" x="760" y="2018">检查模型想象出来的未来轨迹是否满足 L1-L8 规则，并和 baselines 对比。</text>
+
+  <rect x="126" y="2086" width="250" height="122" rx="12" fill="#FCF9FF" stroke="#DEC9F5"/>
+  <text class="h3" x="154" y="2124">1. 加载输入</text>
+  <text class="body2" x="154" y="2162">checkpoint / specs</text>
+  <text class="body2" x="154" y="2192">horizon / rollouts</text>
+
+  <rect x="430" y="2086" width="260" height="122" rx="12" fill="#FCF9FF" stroke="#DEC9F5"/>
+  <text class="h3" x="458" y="2124">2. Imagination</text>
+  <text class="body2" x="458" y="2162">生成 tau1 ... tauN</text>
+  <text class="body2" x="458" y="2192">state / AP / distances / velocity</text>
+
+  <rect x="744" y="2086" width="260" height="122" rx="12" fill="#FCF9FF" stroke="#DEC9F5"/>
+  <text class="h3" x="772" y="2124">3. Latent Monitor</text>
+  <text class="body2" x="772" y="2162">计算 STL robustness</text>
+  <text class="formula" x="772" y="2196">rho* = min rho</text>
+
+  <rect x="1058" y="2086" width="260" height="122" rx="12" fill="#FCF9FF" stroke="#DEC9F5"/>
+  <text class="h3" x="1086" y="2124">4. Calibrator</text>
+  <text class="body2" x="1086" y="2162">扣掉模型预测误差</text>
+  <text class="formula" x="1086" y="2196">rho_net = rho* - c_err</text>
+
+  <rect x="1372" y="2086" width="392" height="122" rx="12" fill="#FCF9FF" stroke="#DEC9F5"/>
+  <text class="h3" x="1400" y="2124">5. 证书 + 最终结论</text>
+  <text class="body2" x="1400" y="2162">LPPM certificate 处理复杂 LTL 任务</text>
+  <text class="body2" x="1400" y="2192">输出 WARRANT / STL_MARGIN / VIOLATION</text>
+
+  <path d="M376 2147 H418" stroke="#8B5CC7" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M690 2147 H732" stroke="#8B5CC7" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M1004 2147 H1046" stroke="#8B5CC7" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M1318 2147 H1360" stroke="#8B5CC7" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <!-- Bottom Matrix -->
+  <rect x="88" y="2300" width="1744" height="1" fill="#CBD5E1"/>
+  <text class="small" x="126" y="2334">Matrix 对比维度：表达能力 / 是否输出结论 / violation 检测 / runtime / inconclusive rate。Baselines：STL-only、No-certificate、CEGAR、empirical baselines。</text>
+</svg>

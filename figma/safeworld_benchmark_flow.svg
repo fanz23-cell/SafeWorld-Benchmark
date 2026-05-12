@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1800" height="1280" viewBox="0 0 1800 1280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#1F2A44" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#42526E"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#2665C8"/>
+    </marker>
+    <style>
+      .bg { fill: #F7F8FB; }
+      .title { font: 700 46px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; fill: #111827; }
+      .subtitle { font: 400 22px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; fill: #4B5563; }
+      .section-title { font: 700 24px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; fill: #111827; }
+      .section-note { font: 400 17px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; fill: #5B6472; }
+      .card-title { font: 700 20px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; fill: #172033; }
+      .card-text { font: 400 16px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; fill: #46515F; }
+      .small { font: 400 14px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; fill: #667085; }
+      .tag { font: 700 13px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; letter-spacing: .9px; fill: #FFFFFF; }
+      .metric { font: 700 17px "Inter", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; fill: #233046; }
+      .mono { font: 600 16px "Roboto Mono", "Consolas", monospace; fill: #314158; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1800" height="1280"/>
+
+  <rect x="80" y="54" width="1640" height="150" rx="18" fill="#FFFFFF" filter="url(#shadow)"/>
+  <rect x="80" y="54" width="10" height="150" rx="5" fill="#2F80ED"/>
+  <text class="title" x="126" y="116">SAFEWORLD-Benchmark 项目流程</text>
+  <text class="subtitle" x="128" y="158">训练一个 world model，再检查它想象出来的未来轨迹是否满足 L1-L8 的安全 / 任务规则。</text>
+  <rect x="1375" y="91" width="274" height="64" rx="8" fill="#EAF2FF"/>
+  <text class="mono" x="1412" y="131">WARRANT / STL_MARGIN / VIOLATION</text>
+
+  <!-- Main section containers -->
+  <rect x="80" y="252" width="390" height="595" rx="14" fill="#FFFFFF" stroke="#D9E2F1"/>
+  <rect x="500" y="252" width="390" height="595" rx="14" fill="#FFFFFF" stroke="#D9E2F1"/>
+  <rect x="920" y="252" width="390" height="595" rx="14" fill="#FFFFFF" stroke="#D9E2F1"/>
+  <rect x="1340" y="252" width="380" height="595" rx="14" fill="#FFFFFF" stroke="#D9E2F1"/>
+
+  <rect x="80" y="252" width="390" height="72" rx="14" fill="#EAF2FF"/>
+  <rect x="500" y="252" width="390" height="72" rx="14" fill="#ECFDF3"/>
+  <rect x="920" y="252" width="390" height="72" rx="14" fill="#FFF6E6"/>
+  <rect x="1340" y="252" width="380" height="72" rx="14" fill="#F4ECFF"/>
+
+  <text class="section-title" x="112" y="292">阶段 1 任务定义 + 数据采集</text>
+  <text class="section-title" x="532" y="292">阶段 2 数据处理 + 转换</text>
+  <text class="section-title" x="952" y="292">阶段 3 训练 World Model</text>
+  <text class="section-title" x="1372" y="292">阶段 4 验证 + Matrix</text>
+
+  <!-- Stage 1 cards -->
+  <rect x="112" y="356" width="326" height="92" rx="8" fill="#F8FAFF" stroke="#CFD9EB"/>
+  <text class="card-title" x="134" y="389">1. 定义 L1-L8 任务</text>
+  <text class="card-text" x="134" y="419">从不进危险区，到 full mission 综合任务</text>
+
+  <rect x="112" y="478" width="326" height="92" rx="8" fill="#F8FAFF" stroke="#CFD9EB"/>
+  <text class="card-title" x="134" y="511">2. 定义 AP 原子命题</text>
+  <text class="card-text" x="134" y="541">hazard / goal / fast / near_obs / A-B-C</text>
+
+  <rect x="112" y="600" width="326" height="92" rx="8" fill="#F8FAFF" stroke="#CFD9EB"/>
+  <text class="card-title" x="134" y="633">3. Evaluator 判卷规则</text>
+  <text class="card-text" x="134" y="663">输入 AP trace，输出 success / violation</text>
+
+  <rect x="112" y="722" width="326" height="92" rx="8" fill="#F8FAFF" stroke="#CFD9EB"/>
+  <text class="card-title" x="134" y="755">4. Controller 跑环境</text>
+  <text class="card-text" x="134" y="785">SafetyPointGoal2-v0 中执行任务策略</text>
+
+  <path d="M275 448 V478" stroke="#8AA4D6" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <path d="M275 570 V600" stroke="#8AA4D6" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <path d="M275 692 V722" stroke="#8AA4D6" stroke-width="3" marker-end="url(#arrowBlue)"/>
+
+  <rect x="126" y="832" width="298" height="68" rx="8" fill="#EAF2FF"/>
+  <text class="metric" x="150" y="861">保存 episode 数据</text>
+  <text class="small" x="150" y="885">success / near_success / failure_or_recovery</text>
+
+  <!-- Stage 2 cards -->
+  <rect x="532" y="356" width="326" height="105" rx="8" fill="#F7FEF9" stroke="#CBEBD7"/>
+  <text class="card-title" x="554" y="389">1. 读取 goal2_master</text>
+  <text class="card-text" x="554" y="419">载入三类轨迹数据，保留安全信号和 AP 标签</text>
+
+  <rect x="532" y="502" width="326" height="120" rx="8" fill="#F7FEF9" stroke="#CBEBD7"/>
+  <text class="card-title" x="554" y="535">2. 构造训练集</text>
+  <text class="card-text" x="554" y="565">mixed_70_20_10：70% success</text>
+  <text class="card-text" x="554" y="591">20% near_success，10% failure/recovery</text>
+
+  <rect x="532" y="663" width="326" height="120" rx="8" fill="#F7FEF9" stroke="#CBEBD7"/>
+  <text class="card-title" x="554" y="696">3. 转成 DreamerV3 格式</text>
+  <text class="card-text" x="554" y="726">输出 .npz replay chunks</text>
+  <text class="card-text" x="554" y="752">obs / action / reward / cost / safety signals</text>
+
+  <path d="M695 461 V502" stroke="#6DBB88" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M695 622 V663" stroke="#6DBB88" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="564" y="832" width="262" height="68" rx="8" fill="#ECFDF3"/>
+  <text class="metric" x="590" y="861">训练数据就绪</text>
+  <text class="small" x="590" y="885">DreamerV3-style dataset</text>
+
+  <!-- Stage 3 cards -->
+  <rect x="952" y="356" width="326" height="88" rx="8" fill="#FFFBF3" stroke="#F2D7A6"/>
+  <text class="card-title" x="974" y="389">1. 输入训练数据</text>
+  <text class="card-text" x="974" y="419">obs, action, reward, cost, safety signals</text>
+
+  <rect x="952" y="474" width="326" height="88" rx="8" fill="#FFFBF3" stroke="#F2D7A6"/>
+  <text class="card-title" x="974" y="507">2. Encoder</text>
+  <text class="card-text" x="974" y="537">把 observation 压缩成 latent：obs_t -> z_t</text>
+
+  <rect x="952" y="592" width="326" height="100" rx="8" fill="#FFFBF3" stroke="#F2D7A6"/>
+  <text class="card-title" x="974" y="625">3. RSSM / Dynamics</text>
+  <text class="card-text" x="974" y="655">学习 z_t + action_t -> z_{t+1}</text>
+
+  <rect x="952" y="722" width="326" height="108" rx="8" fill="#FFFBF3" stroke="#F2D7A6"/>
+  <text class="card-title" x="974" y="755">4. Prediction Heads</text>
+  <text class="card-text" x="974" y="785">预测 reward / cost / speed / distance</text>
+
+  <path d="M1115 444 V474" stroke="#E3A736" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1115 562 V592" stroke="#E3A736" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1115 692 V722" stroke="#E3A736" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="984" y="850" width="262" height="68" rx="8" fill="#FFF6E6"/>
+  <text class="metric" x="1010" y="879">保存 checkpoint</text>
+  <text class="small" x="1010" y="903">trained world model</text>
+
+  <!-- Stage 4 cards -->
+  <rect x="1372" y="350" width="316" height="74" rx="8" fill="#FCF9FF" stroke="#DEC9F5"/>
+  <text class="card-title" x="1394" y="381">1. 加载模型 + Specs</text>
+  <text class="card-text" x="1394" y="407">checkpoint / L1-L8 / horizon / rollouts</text>
+
+  <rect x="1372" y="450" width="316" height="86" rx="8" fill="#FCF9FF" stroke="#DEC9F5"/>
+  <text class="card-title" x="1394" y="481">2. World Model Imagination</text>
+  <text class="card-text" x="1394" y="507">生成未来轨迹 tau1 ... tauN</text>
+
+  <rect x="1372" y="562" width="316" height="86" rx="8" fill="#FCF9FF" stroke="#DEC9F5"/>
+  <text class="card-title" x="1394" y="593">3. Latent Monitor</text>
+  <text class="card-text" x="1394" y="619">计算 STL robustness，取最差 rho*</text>
+
+  <rect x="1372" y="674" width="316" height="86" rx="8" fill="#FCF9FF" stroke="#DEC9F5"/>
+  <text class="card-title" x="1394" y="705">4. Transfer Calibrator</text>
+  <text class="card-text" x="1394" y="731">rho_net = rho* - c_err</text>
+
+  <rect x="1372" y="786" width="316" height="86" rx="8" fill="#FCF9FF" stroke="#DEC9F5"/>
+  <text class="card-title" x="1394" y="817">5. LPPM Certificate</text>
+  <text class="card-text" x="1394" y="843">处理巡逻、长期响应等复杂 LTL 任务</text>
+
+  <path d="M1530 424 V450" stroke="#9D72D9" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1530 536 V562" stroke="#9D72D9" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1530 648 V674" stroke="#9D72D9" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1530 760 V786" stroke="#9D72D9" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- Cross-stage arrows -->
+  <path d="M470 552 H500" stroke="#42526E" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M890 552 H920" stroke="#42526E" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M1310 552 H1340" stroke="#42526E" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <!-- Output area -->
+  <rect x="80" y="952" width="1640" height="250" rx="18" fill="#FFFFFF" filter="url(#shadow)"/>
+  <text class="section-title" x="118" y="1000">最简总流程</text>
+  <text class="section-note" x="118" y="1032">从任务定义到 imagination verification，最后与 baseline 生成 matrix 对比。</text>
+
+  <g transform="translate(118 1068)">
+    <rect width="170" height="62" rx="8" fill="#EAF2FF" stroke="#BCD2F4"/>
+    <text class="small" x="22" y="27">L1-L8</text>
+    <text class="metric" x="22" y="49">任务定义</text>
+  </g>
+  <path d="M300 1099 H348" stroke="#42526E" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g transform="translate(360 1068)">
+    <rect width="190" height="62" rx="8" fill="#F8FAFF" stroke="#CFD9EB"/>
+    <text class="small" x="20" y="27">AP extractor</text>
+    <text class="metric" x="20" y="49">Evaluator</text>
+  </g>
+  <path d="M562 1099 H610" stroke="#42526E" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g transform="translate(622 1068)">
+    <rect width="190" height="62" rx="8" fill="#ECFDF3" stroke="#CBEBD7"/>
+    <text class="small" x="20" y="27">Controller</text>
+    <text class="metric" x="20" y="49">采集轨迹数据</text>
+  </g>
+  <path d="M824 1099 H872" stroke="#42526E" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g transform="translate(884 1068)">
+    <rect width="190" height="62" rx="8" fill="#ECFDF3" stroke="#CBEBD7"/>
+    <text class="small" x="20" y="27">DreamerV3</text>
+    <text class="metric" x="20" y="49">格式转换</text>
+  </g>
+  <path d="M1086 1099 H1134" stroke="#42526E" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g transform="translate(1146 1068)">
+    <rect width="190" height="62" rx="8" fill="#FFF6E6" stroke="#F2D7A6"/>
+    <text class="small" x="20" y="27">World Model</text>
+    <text class="metric" x="20" y="49">训练 + 想象</text>
+  </g>
+  <path d="M1348 1099 H1396" stroke="#42526E" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g transform="translate(1408 1068)">
+    <rect width="250" height="62" rx="8" fill="#F4ECFF" stroke="#DEC9F5"/>
+    <text class="small" x="20" y="27">SAFEWORLD</text>
+    <text class="metric" x="20" y="49">验证 + Matrix 输出</text>
+  </g>
+
+  <rect x="118" y="1158" width="493" height="20" rx="10" fill="#EAF2FF"/>
+  <rect x="635" y="1158" width="493" height="20" rx="10" fill="#ECFDF3"/>
+  <rect x="1152" y="1158" width="506" height="20" rx="10" fill="#F4ECFF"/>
+  <text class="small" x="118" y="1232">Portfolio view: 重点展示 “任务定义 -> 数据 -> 模型 -> 验证结论” 的闭环，而不是展开每个函数。</text>
+
+  <!-- Matrix chips -->
+  <rect x="1184" y="984" width="110" height="34" rx="17" fill="#2F80ED"/>
+  <text class="tag" x="1206" y="1006">WARRANT</text>
+  <rect x="1310" y="984" width="132" height="34" rx="17" fill="#F59E0B"/>
+  <text class="tag" x="1332" y="1006">STL_MARGIN</text>
+  <rect x="1458" y="984" width="112" height="34" rx="17" fill="#EF4444"/>
+  <text class="tag" x="1480" y="1006">VIOLATION</text>
+  <rect x="1586" y="984" width="72" height="34" rx="17" fill="#596579"/>
+  <text class="tag" x="1608" y="1006">rho*</text>
+</svg>
